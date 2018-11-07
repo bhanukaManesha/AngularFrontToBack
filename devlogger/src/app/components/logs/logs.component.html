@@ -1,15 +1,17 @@
-<ul class="list-group">
+<ul class="list-group" *ngIf="loaded && logs?.length > 0">
 
-  <li class="list-group-item d-flex justify-content-between aligh-items-center">
-    <a href="#">Generated components</a>
-    <span class="log-date">12/27/2017</span>
-    <i class="fa fa-remove"></i>
+  <li *ngFor="let log of logs" [class.list-group-item-secondary]="selectedLog === log" class="list-group-item d-flex justify-content-between aligh-items-center">
+    <a (click)="onSelect(log)" href="#">{{log.text}}</a>
+    <span class="log-date">{{log.date | date:'short'}}</span>
+    <i (click)="onDelete(log)" class="fa fa-remove"></i>
   </li>
-
-  <li class="list-group-item d-flex justify-content-between aligh-items-center">
-      <a href="#">Added Login</a>
-      <span class="log-date">12/27/2017</span>
-      <i class="fa fa-remove"></i>
-    </li>
   
 </ul>
+
+<div *ngIf = "loaded && logs.length == 0">
+  <h5>There are no logs in the system</h5>
+</div>
+
+<div *ngIf = "!loaded">
+    <h5>Loading...</h5>
+  </div>
