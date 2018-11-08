@@ -4,6 +4,9 @@ import { FormsModule } from '@angular/forms';
 import { FlashMessagesModule } from 'angular2-flash-messages'
 
 
+import { ClientService } from './services/client.service'
+import { AuthService } from './services/auth.service'
+
 import { environment } from '../environments/environment';
 
 import { AngularFireModule } from 'angularfire2';
@@ -50,7 +53,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
     FormsModule,
     FlashMessagesModule.forRoot()
   ],
-  providers: [],
+  providers: [ClientService,AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
